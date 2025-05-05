@@ -1,16 +1,39 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '7.2'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
         }
     }
+
+    
     repositories {
         maven {
-            url "https://your-artifactory-url/artifactory/libs-release-local"
-            credentials {
-                username = project.findProperty("artifactory_user")
-                password = project.findProperty("artifactory_password")
-            }
+            url = uri("https://repo.maven.apache.org/maven2")
         }
     }
+
 }
