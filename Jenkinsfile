@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        // Optional: define any environment variables if needed
-    }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -24,7 +22,7 @@ pipeline {
         }
 
 
-        
+
         stage('Publish') {
             steps {
                 // Publish to Maven Central or other repository if needed
