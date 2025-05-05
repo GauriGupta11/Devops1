@@ -14,9 +14,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '7.2'
-}
 
 tasks.withType(Test) {
     useJUnitPlatform()
@@ -29,7 +26,7 @@ publishing {
         }
     }
 
-    
+
     repositories {
         maven {
             url = uri("https://repo.maven.apache.org/maven2")
