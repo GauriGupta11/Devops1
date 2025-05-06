@@ -13,7 +13,7 @@ pipeline {
                 dir('Devops1/3') {
                     // List the files in the directory and print the current working directory
                     sh 'echo "Current directory:" && pwd'
-                    sh 'dir'  // List files to confirm that app.py is in this directory
+                    bat 'dir'  // Use bat to list files on Windows
                 }
             }
         }
@@ -22,10 +22,10 @@ pipeline {
             steps {
                 // Print the working directory again before running the script
                 echo "Current directory before running app.py"
-                sh 'pwd'
+                bat 'echo %cd%'  // Windows equivalent of pwd
                 dir('Devops1/3') {
                     // Run Python app using the correct Python executable from Jenkins workspace
-                    sh 'python app.py'
+                    bat 'C:/Users/gauri/AppData/Local/Programs/Python/Python312/python.exe app.py'
                 }
             }
         }
