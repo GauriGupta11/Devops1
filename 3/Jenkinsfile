@@ -11,7 +11,9 @@ pipeline {
         stage('List Files') {
             steps {
                 dir('Devops1/3') {
-                    sh 'dir'  // Lists the files in the directory to verify the path
+                    // List the files in the directory
+                    sh 'echo "Current directory:" && pwd'
+                    sh 'dir'  // List files to confirm that app.py is in this directory
                 }
             }
         }
@@ -19,7 +21,8 @@ pipeline {
         stage('Run Python App') {
             steps {
                 dir('Devops1/3') {
-                    sh 'python app.py'  // Runs the Python script
+                    // Use full path to Python and app.py file
+                    sh 'C:/Users/gauri/AppData/Local/Programs/Python/Python312/python.exe app.py'
                 }
             }
         }
