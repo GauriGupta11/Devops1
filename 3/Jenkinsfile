@@ -8,10 +8,18 @@ pipeline {
             }
         }
 
+        stage('List Files') {
+            steps {
+                dir('Devops1/3') {
+                    sh 'dir'  // Lists the files in the directory to verify the path
+                }
+            }
+        }
+
         stage('Run Python App') {
             steps {
                 dir('Devops1/3') {
-                    sh 'python app.py'
+                    sh 'python app.py'  // Runs the Python script
                 }
             }
         }
