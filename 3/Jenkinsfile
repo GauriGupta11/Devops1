@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run Python App') {
+            steps {
+                dir('Devops1/3') {
+                    sh 'python app.py'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Merge conflict resolved and app.py ran successfully!'
+        }
+        failure {
+            echo 'There was an error running the Python script.'
+        }
+    }
+}
