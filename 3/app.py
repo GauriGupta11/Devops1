@@ -1,4 +1,4 @@
 # app.py
 
 def greet(name):
-    print(f"Greetings, {name}!")
+    print(f"Hello, {name}!")
