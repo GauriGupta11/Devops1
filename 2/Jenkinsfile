@@ -14,17 +14,23 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t gaurigupta11/devops2:latest .'
+                // Navigate to Devops1/2 where Dockerfile is located
+                dir('2') {
+                    sh 'docker build -t gaurigupta11/devops2:latest .'
+                }
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                        docker push gaurigupta11/devops2:latest
-                    '''
+                // Same directory for Docker push
+                dir('2') {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                            docker push gaurigupta11/devops2:latest
+                        '''
+                    }
                 }
             }
         }
