@@ -6,17 +6,20 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Build') {
             steps {
                 bat 'gradlew.bat clean build'
 
             }
         }
+
         stage('Test') {
             steps {
                 sh 'gradle test'
             }
         }
+        
         stage('Publish') {
             steps {
                 sh 'gradle publish'
